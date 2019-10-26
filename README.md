@@ -1,3 +1,8 @@
+# MassMover bot Web Interface
+
+## This page is under prototyping phase, not much to see here now.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
