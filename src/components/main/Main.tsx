@@ -1,10 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Loader from "../loader/Loader.js";
-import ServerPannel from "../server-pannel/ServerPannel.js";
-// import DiscordLogin from "../discord-login/DiscordLogin.js";
+import Loader from "../loader/Loader";
+import ServerPannel from "../server-pannel/ServerPannel";
+// import DiscordLogin from "../discord-login/DiscordLogin";
 
-function Main(props) {
+function Main(): JSX.Element {
   return (
     <Switch>
       {/* <Route exact path="/" component={DiscordLogin} /> */}

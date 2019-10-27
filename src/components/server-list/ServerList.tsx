@@ -1,11 +1,24 @@
 import React from "react";
 import "./ServerList.css";
-import ServerItem from "../server-item/ServerItem.js";
+import ServerItem from "../server-item/ServerItem";
 import { Link } from "react-router-dom";
 
-class ServerList extends React.Component {
-  constructor(props) {
+export interface IAppProps {}
+
+export interface Server {
+  id: number;
+  name: string;
+}
+
+export interface IAppState {
+  servers: Server[];
+  selectedServer: string;
+}
+
+class ServerList extends React.Component<IAppProps, IAppState> {
+  constructor(props: IAppProps) {
     super(props);
+
     this.state = {
       servers: [
         { id: 1, name: "Server1" },
@@ -15,7 +28,8 @@ class ServerList extends React.Component {
       selectedServer: ""
     };
   }
-  render() {
+
+  public render() {
     return (
       <div className="sidenav">
         <ul className="server-list">

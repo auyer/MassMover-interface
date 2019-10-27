@@ -1,21 +1,27 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import DiscordLogin from "../discord-login/DiscordLogin.js";
-import ServerList from "../../components/server-list/ServerList";
+import DiscordLogin from "../discord-login/DiscordLogin";
+import ServerList from "../server-list/ServerList";
+import Main from "../main/Main";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import Main from "../main/Main.js";
+export interface IAppProps {}
 
-class App extends React.Component {
-  constructor(props) {
+export interface IAppState {
+  authenticated: boolean;
+}
+
+class App extends React.Component<IAppProps, IAppState> {
+  constructor(props: IAppProps) {
     super(props);
+
     this.state = {
       authenticated: true
     };
   }
 
-  render() {
+  public render() {
     if (this.state.authenticated) {
       return (
         <div className="App">
