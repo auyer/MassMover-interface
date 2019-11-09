@@ -21,7 +21,7 @@ const ServerItem: React.FunctionComponent<Props> = props => {
     <div>
       <button className="button">
         {props.guild.icon.length > 0 ? (
-          <img src={props.guild.icon} alt="Icon" />
+          <img src={`data:image/png;base64,${props.guild.icon}`} alt="Icon" />
         ) : null}
 
         <span>{props.guild.name} </span>
