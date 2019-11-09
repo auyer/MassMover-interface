@@ -5,7 +5,7 @@ import discordLogo from "./discordWhite.svg";
 function DiscordLogin(): JSX.Element {
   return (
     <div className="container">
-      <a href="/api/discord/login" target="_blank" rel="noopener noreferrer">
+      <a href="/api/login">
         Login through <img src={discordLogo} alt="Discord logo" />
       </a>
     </div>

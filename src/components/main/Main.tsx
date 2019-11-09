@@ -1,17 +1,27 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Loader from "../loader/Loader";
-import ServerPannel from "../server-pannel/ServerPannel";
-// import DiscordLogin from "../discord-login/DiscordLogin";
+import DiscordLogin from "../discord-login/DiscordLogin";
+import GuildPannel from "../../containers/guild-pannel/GuildPannel";
 
-function Main(): JSX.Element {
+export interface IMainProps {
+  authenticated: boolean;
+  logo: string;
+}
+
+const Main: React.FunctionComponent<IMainProps> = props => {
+  // function Main(): JSX.Element {
   return (
     <Switch>
-      {/* <Route exact path="/" component={DiscordLogin} /> */}
-      <Route exact path="/server/" component={Loader} />
-      <Route path="/server/:id" component={ServerPannel} />
+      <Route exact path="/login" component={DiscordLogin} />
+      {props.authenticated ? (
+        <div>
+          <Route exact path="/server/" component={GuildPannel} />
+        </div>
+      ) : (
+        <img src={props.logo} className="App-logo" alt="logo" />
+      )}
     </Switch>
   );
-}
+};
 
 export default Main;

@@ -1,48 +1,40 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import DiscordLogin from "../discord-login/DiscordLogin";
-import ServerList from "../server-list/ServerList";
+import logo from "./logo.svg";
 import Main from "../main/Main";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import GuildPannel from "../../containers/guild-pannel/GuildPannel";
 
 export interface IAppProps {}
 
 export interface IAppState {
   authenticated: boolean;
+  userID: string;
 }
 
-class App extends React.Component<IAppProps, IAppState> {
-  constructor(props: IAppProps) {
-    super(props);
+const App: React.FunctionComponent<IAppProps> = ({}) => {
+  const [authenticated, setAuthenticated] = React.useState<boolean>(false);
 
-    this.state = {
-      authenticated: true
-    };
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+        <Router>
+          {!authenticated ? (
+            <div className="sidenav">
+              <button onClick={e => setAuthenticated(true)}>Login</button>
+              <Link to={`/login/`}>
+                <button>Login</button>
+              </Link>
+            </div>
+          ) : (
+            <GuildPannel />
+          )}
 
-  public render() {
-    if (this.state.authenticated) {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <Router>
-              <ServerList />
-              <Main />
-            </Router>
-          </header>
-        </div>
-      );
-    }
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <DiscordLogin />
-        </header>
-      </div>
-    );
-  }
-}
+          <Main authenticated={authenticated} logo={logo} />
+        </Router>
+      </header>
+    </div>
+  );
+};
 
 export default App;
