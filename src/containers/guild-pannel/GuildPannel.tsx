@@ -1,8 +1,8 @@
 import React from "react";
 import Api from "../../helpers/api/api";
-import ServerList from "../../components/server-list/ServerList";
+import GuildItemList from "../../components/guild-item-list/GuildItemList";
 import Loader from "../../components/loader/Loader";
-import { SimpleGuild } from "../../components/server-item/ServerItem";
+import { SimpleGuild } from "../../components/guild-item/GuildItem";
 import Guild, { IGuild } from "../../components/guild/Guild";
 
 export interface IGuildsPannelProps {}
@@ -61,7 +61,7 @@ const GuildPannel: React.FunctionComponent<IGuildsPannelProps> = props => {
     <div className="App">
       <header className="App-header">
         <div className="sidenav">
-          <ServerList
+          <GuildItemList
             guilds={loadedGuilds}
             setSelectedGuild={setSelectedGuild}
           />
