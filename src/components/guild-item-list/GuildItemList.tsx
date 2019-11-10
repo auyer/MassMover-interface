@@ -4,7 +4,7 @@ import GuildItem, { SimpleGuild } from "../guild-item/GuildItem";
 
 interface IGuildListProps {
   guilds: SimpleGuild[];
-  setSelectedGuild: React.Dispatch<React.SetStateAction<String>>;
+  setSelectedGuild: Function;
 }
 
 const GuildItemList: React.FunctionComponent<IGuildListProps> = props => {

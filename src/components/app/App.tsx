@@ -12,7 +12,7 @@ export interface IAppState {
   userID: string;
 }
 
-const App: React.FunctionComponent<IAppProps> = ({}) => {
+const App: React.FunctionComponent<IAppProps> = () => {
   const [authenticated, setAuthenticated] = React.useState<boolean>(false);
 
   return (

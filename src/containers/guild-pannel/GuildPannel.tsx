@@ -14,9 +14,12 @@ const GuildPannel: React.FunctionComponent<IGuildsPannelProps> = props => {
 
   const [selectedGuild, setSelectedGuild] = React.useState<String>("");
 
-  // const setSelectedGuildWrap:React.Dispatch<React.SetStateAction<String>> () =>{
-  //   setSelectedGuild()
-  // }
+  const setSelectedGuildHandler: Function = React.useCallback(
+    (GuildID: string): void => {
+      setSelectedGuild(GuildID);
+    },
+    []
+  );
 
   const [isLoading, setIsLoading] = React.useState<Boolean>(true);
 
@@ -27,26 +30,26 @@ const GuildPannel: React.FunctionComponent<IGuildsPannelProps> = props => {
     memberCount: 0
   });
 
+  // get guilds list
   React.useEffect((): void => {
     Api<SimpleGuild[]>("/api/guilds")
       .then(servers => {
         console.log(servers);
         setGuilds(servers);
-        console.log(loadedGuilds);
       })
       .catch(error => {
         console.log(error);
       });
   }, []);
 
+  // Load selectd guild
   React.useEffect((): void => {
-    if (selectedGuild.length == 0) {
+    if (selectedGuild.length === 0) {
       return;
     }
     console.log("Loading selected Guild");
     setIsLoading(true);
-    console.log(isLoading);
-    Api<IGuild>(`/api/guild/${loadedGuild.id}`)
+    Api<IGuild>(`/api/guild/${selectedGuild}`)
       .then(guild => {
         setGuild(guild);
       })
@@ -54,7 +57,6 @@ const GuildPannel: React.FunctionComponent<IGuildsPannelProps> = props => {
         console.log(error);
       });
     setIsLoading(false);
-    console.log(isLoading);
   }, [selectedGuild]);
 
   return (
@@ -63,7 +65,7 @@ const GuildPannel: React.FunctionComponent<IGuildsPannelProps> = props => {
         <div className="sidenav">
           <GuildItemList
             guilds={loadedGuilds}
-            setSelectedGuild={setSelectedGuild}
+            setSelectedGuild={setSelectedGuildHandler}
           />
         </div>
         {isLoading ? <Guild {...loadedGuild} /> : Loader}
